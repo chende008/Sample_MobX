@@ -8,13 +8,4 @@ export const Api = {//非标准
     queryMembers: 'https://api.jikan.moe/v3/club/1/members',//查询成员列表
 };
 
-export const ApiO2O = {
-    baseUrl: 'http://www.baidu.com/',
-};
-
-export const ApiCredit = {
-    baseUrl: 'http://www.baidu.com/',
-    refreshToken: 'api/refreshToken',
-};
-
 export const Assets = 'http://www.baidu.com';
