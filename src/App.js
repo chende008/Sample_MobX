@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {createStackNavigator, TransitionSpecs} from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import {RootSiblingParent} from 'react-native-root-siblings';
 
 import LaunchController from "./Main/Welcome/LaunchController";
@@ -12,22 +12,9 @@ import RefreshController from "./Main/Home/view/RefreshController";
 import HttpController from "./Main/Home/view/HttpController";
 import WebViewController from "./Main/Home/view/WebViewController";
 
-function ScreenList() {
-    return <Stack.Navigator initialPage={LaunchController}
-                            headerMode='none'>
-        <Stack.Screen name='launch' component={LaunchController}/>
-        <Stack.Screen name='main' component={MainController}/>
-        <Stack.Screen name='http' component={HttpController}/>
-        <Stack.Screen name='storage' component={StorageController}/>
-        <Stack.Screen name='widget' component={WidgetController}/>
-        <Stack.Screen name='refreshList' component={RefreshController}/>
-        <Stack.Screen name='webView' component={WebViewController}/>
-    </Stack.Navigator>
-}
+const {Navigator, Screen} = createStackNavigator();
 
-const Stack = createStackNavigator();
-
-export default function RouterList() {
+export default function App() {
     console.disableYellowBox = true;
     return <SafeAreaProvider>
         <NavigationContainer>
@@ -36,4 +23,17 @@ export default function RouterList() {
             </RootSiblingParent>
         </NavigationContainer>
     </SafeAreaProvider>
+}
+
+function ScreenList() {
+    return <Navigator headerMode='none'
+                      initialPage={LaunchController}>
+        <Screen name='launch' component={LaunchController}/>
+        <Screen name='main' component={MainController}/>
+        <Screen name='http' component={HttpController}/>
+        <Screen name='storage' component={StorageController}/>
+        <Screen name='widget' component={WidgetController}/>
+        <Screen name='refreshList' component={RefreshController}/>
+        <Screen name='webView' component={WebViewController}/>
+    </Navigator>
 }

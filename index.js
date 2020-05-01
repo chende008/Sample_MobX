@@ -1,4 +1,4 @@
 import {AppRegistry} from 'react-native';
-import RouterList from "./src/RouterList";
+import App from "./src/App";
 
-AppRegistry.registerComponent('Sample_MobX', () => RouterList, false);
+AppRegistry.registerComponent('Sample_MobX', () => App, false);
