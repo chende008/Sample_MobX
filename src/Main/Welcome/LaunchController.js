@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
 
-import {Actions} from 'react-native-router-flux';
 import AsyncStorage from '@react-native-community/async-storage';
 import {RFStorage, RFWidget} from 'react-native-fast-app';
 import {RNStorage} from '../Common/storage/AppStorage';
@@ -15,9 +14,9 @@ export default class LaunchController extends PureComponent {
     }
 
     init = () => {
-        console.disableYellowBox = true;
         RFStorage.initStorage(RNStorage, () => {
-            Actions.reset('main');
+            global.navigation = this.props.navigation;
+            navigation.reset({routes: [{name: 'main'}],});
         }, (data) => {
             this.printLog(data)
         }, '1.0', AsyncStorage);

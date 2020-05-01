@@ -12,6 +12,9 @@
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.8.3",
     "@react-native-community/async-storage": "^1.9.0",
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/native": "^5.1.7",
+    "@react-navigation/stack": "^5.2.14",
     "events": "^3.1.0",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
@@ -23,8 +26,10 @@
     "react-native-fast-app": "^1.5.2",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-reanimated": "^1.8.0",
-    "react-native-root-toast": "^3.2.0",
-    "react-native-router-flux": "^4.2.0",
+    "react-native-root-siblings": "^4.0.6",
+    "react-native-root-toast": "3.2.1",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-safe-area-view": "^1.1.1",
     "react-native-screens": "^2.5.0",
     "react-native-webview": "^9.2.2"
   },

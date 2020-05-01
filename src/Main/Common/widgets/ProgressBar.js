@@ -46,24 +46,28 @@ export default class ProgressBar extends PureComponent {
             Animated.timing(this.firstWidth, {
                 toValue: Const.screenWidth / 2,
                 duration: 1000,
-                easing: Easing.linear
+                easing: Easing.linear,
+                useNativeDriver: false
             }),
             Animated.timing(this.firstTransX, {
                 toValue: Const.screenWidth,
                 duration: 2000,
-                easing: Easing.linear
+                easing: Easing.linear,
+                useNativeDriver: false
             }),
             Animated.timing(this.secondWidth, {
                 toValue: 15,
                 duration: 1000,
                 delay: 1000,
-                easing: Easing.linear
+                easing: Easing.linear,
+                useNativeDriver: false
             }),
             Animated.timing(this.secondTransX, {
                 toValue: Const.screenWidth,
                 duration: 1000,
                 delay: 1000,
-                easing: Easing.linear
+                easing: Easing.linear,
+                useNativeDriver: false
             })
         ]);
         this.animationSet.start(() => {

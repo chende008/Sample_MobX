@@ -7,7 +7,6 @@ import {NavigationBar} from "../../Common/widgets/WidgetNavigation";
 import ProgressBar from "../../Common/widgets/ProgressBar";
 import WebView from "react-native-webview";
 import {CommonStyles} from "../../Common/storage/Const";
-import {Actions} from 'react-native-router-flux';
 import {DebugManager} from "react-native-debug-tool";
 import StoreWebView from "../../Store/StoreWebView";
 import {observer} from "mobx-react";
@@ -18,7 +17,7 @@ export default class WebViewController extends PureComponent {
     render() {
         let {title, loading, url, canGoBack} = StoreWebView;
         return <SafeAreaView style={CommonStyles.container}>
-            <NavigationBar title={title} onBack={() => canGoBack ? this.webView.goBack() : Actions.pop()}/>
+            <NavigationBar title={title} onBack={() => canGoBack ? this.webView.goBack() : this.props.navigation.goBack()}/>
             <View style={{flex: 1}}>
                 <WebView source={{uri: url}}
                          domStorageEnabled={true}

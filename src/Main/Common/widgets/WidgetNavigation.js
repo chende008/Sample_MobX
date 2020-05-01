@@ -4,7 +4,6 @@ import {StyleSheet} from 'react-native';
 
 import PropTypes from 'prop-types';
 import {isEmpty} from '../utils/Utils';
-import {Actions} from 'react-native-router-flux';
 import {Colors, CommonStyles, Const, ImageRes} from '../storage/Const';
 import {RFImage, RFText, RFView} from 'react-native-fast-app';
 
@@ -27,7 +26,7 @@ NavigationBar.propTypes = {// 标题栏属性
     clickRText: PropTypes.func,
 };
 
-NavigationBar.defaultProps = {onBack: () => Actions.pop()};// 标题栏属性默认值
+NavigationBar.defaultProps = {onBack: () => navigation.goBack()};// 标题栏属性默认值
 
 const styles = StyleSheet.create({
     titleBarParent: {

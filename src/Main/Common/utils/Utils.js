@@ -102,5 +102,3 @@ export function fileName(uri) {
 export function netWorkException(code) {
     return code === -1;
 }
-
-
