@@ -30,7 +30,7 @@ StoreHttp.animalImageList = () => {//返回标准的json的http请求
 };
 
 StoreHttp.queryMemberList = async () => {//同步请求数据
-    let {success, json, message, status} = await RFHttp().url(Api.queryMembers).execute('GET');
+    let {success, json, message, status} = await RFHttp().url(Api.queryMembers).loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).execute('GET');
 
     success ? StoreHttp.content = JSON.stringify(json) : showToast(message);
 
