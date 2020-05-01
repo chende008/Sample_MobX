@@ -28,12 +28,12 @@ export default function App() {
 function ScreenList() {
     return <Navigator headerMode='none'
                       initialPage={LaunchController}>
-        <Screen name='launch' component={LaunchController}/>
-        <Screen name='main' component={MainController}/>
-        <Screen name='http' component={HttpController}/>
-        <Screen name='storage' component={StorageController}/>
-        <Screen name='widget' component={WidgetController}/>
-        <Screen name='refreshList' component={RefreshController}/>
-        <Screen name='webView' component={WebViewController}/>
+        <Screen name='Launch' component={LaunchController}/>
+        <Screen name='Main' component={MainController}/>
+        <Screen name='Http' component={HttpController}/>
+        <Screen name='Storage' component={StorageController}/>
+        <Screen name='Widget' component={WidgetController}/>
+        <Screen name='RefreshList' component={RefreshController}/>
+        <Screen name='WebView' component={WebViewController}/>
     </Navigator>
 }

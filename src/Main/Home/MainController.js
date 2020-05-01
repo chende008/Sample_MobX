@@ -25,11 +25,11 @@ export default class MainController extends PureComponent {
             <NavigationBar title='Sample-MobX' rightText='调试工具' clickRText={() => {
                 DebugManager.showFloat(Manager)
             }} hideBack/>
-            <RNItem text='Http请求' onPress={() => navigation.push('http')}/>
-            <RNItem text='数据存储' onPress={() => navigation.push('storage')}/>
-            <RNItem text='基础控件' onPress={() => navigation.push('widget')}/>
-            <RNItem text='刷新列表' onPress={() => navigation.push('refreshList')}/>
-            <RNItem text='WebView' onPress={() => navigation.push('webView')}/>
+            <RNItem text='Http请求' onPress={() => navigation.push('Http')}/>
+            <RNItem text='数据存储' onPress={() => navigation.push('Storage')}/>
+            <RNItem text='基础控件' onPress={() => navigation.push('Widget')}/>
+            <RNItem text='刷新列表' onPress={() => navigation.push('RefreshList')}/>
+            <RNItem text='WebView' onPress={() => navigation.push('WebView')}/>
         </SafeAreaView>;
     }
 
