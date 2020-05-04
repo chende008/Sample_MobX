@@ -16,7 +16,7 @@ export default class LaunchController extends PureComponent {
     init = () => {
         RFStorage.initStorage(RNStorage, () => {
             global.navigation = this.props.navigation;
-            navigation.reset({routes: [{name: 'Main'}],});
+            navigation.replace('Main');
         }, (data) => {
             this.printLog(data)
         }, '1.0', AsyncStorage);

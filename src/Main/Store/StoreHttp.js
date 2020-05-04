@@ -8,7 +8,7 @@ const StoreHttp = observable({
 });
 
 StoreHttp.moviesList = () => {//返回标准的json的http请求
-    RFHttp().url(Api.moviesList).formJson().get((success, json, msg, code) => {
+    RFHttp().url(Api.moviesList).formJson().loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).get((success, json, msg, code) => {
         if (success) {
             showToast('请求成功');
             StoreHttp.content = JSON.stringify(json)
