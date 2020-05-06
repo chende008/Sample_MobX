@@ -1,7 +1,6 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {createStackNavigator} from '@react-navigation/stack';
+import {Router, Scene} from 'react-native-router-flux';
+import {SafeAreaProvider, useSafeArea} from 'react-native-safe-area-context';
 import {RootSiblingParent} from 'react-native-root-siblings';
 
 import LaunchController from "./Main/Welcome/LaunchController";
@@ -11,29 +10,30 @@ import WidgetController from "./Main/Home/view/WidgetController";
 import RefreshController from "./Main/Home/view/RefreshController";
 import HttpController from "./Main/Home/view/HttpController";
 import WebViewController from "./Main/Home/view/WebViewController";
+import RootStore from "./Main/Store/RootStore";
 
-const {Navigator, Screen} = createStackNavigator();
+const rootStore = new RootStore();
 
 export default function App() {
     console.disableYellowBox = true;
     return <SafeAreaProvider>
-        <NavigationContainer>
-            <RootSiblingParent>
-                <ScreenList/>
-            </RootSiblingParent>
-        </NavigationContainer>
+        <RootSiblingParent>
+            <RouterList/>
+        </RootSiblingParent>
     </SafeAreaProvider>
 }
 
-function ScreenList() {
-    return <Navigator headerMode='none'
-                      initialPage={LaunchController}>
-        <Screen name='Launch' component={LaunchController}/>
-        <Screen name='Main' component={MainController}/>
-        <Screen name='Http' component={HttpController}/>
-        <Screen name='Storage' component={StorageController}/>
-        <Screen name='Widget' component={WidgetController}/>
-        <Screen name='RefreshList' component={RefreshController}/>
-        <Screen name='WebView' component={WebViewController}/>
-    </Navigator>
+function RouterList() {//项目页面清单
+    global.INSETS = useSafeArea();
+    return <Router {...rootStore}>
+        <Scene key="root" hideNavBar>
+            <Scene initial={true} component={LaunchController}/>
+            <Scene key='main' component={MainController}/>
+            <Scene key='http' component={HttpController}/>
+            <Scene key='storage' component={StorageController}/>
+            <Scene key='widget' component={WidgetController}/>
+            <Scene key='refreshList' component={RefreshController}/>
+            <Scene key='webView' component={WebViewController}/>
+        </Scene>
+    </Router>
 }

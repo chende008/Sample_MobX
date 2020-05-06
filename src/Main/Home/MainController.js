@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
-import {BackHandler, Alert} from 'react-native';
-import {NavigationBar} from '../Common/widgets/WidgetNavigation';
+import {Alert, BackHandler} from 'react-native';
+import {NavigationBar, ParentView} from '../Common/widgets/WidgetNavigation';
 import {RNItem} from '../Common/widgets/WidgetDefault';
 import HttpConfig from './http/HttpConfig';
 import {DebugManager} from "react-native-debug-tool";
@@ -9,7 +9,7 @@ import {Manager} from 'react-native-root-toast'
 import DeviceInfo from 'react-native-device-info';
 import {Notify} from "../Common/events/Notify";
 import {RNStorage} from "../Common/storage/AppStorage";
-import SafeAreaView from 'react-native-safe-area-view';
+import {Actions} from 'react-native-router-flux'
 
 let lastClickTime = (new Date()).valueOf();
 
@@ -21,16 +21,16 @@ export default class MainController extends PureComponent {
     }
 
     render() {
-        return <SafeAreaView>
+        return <ParentView>
             <NavigationBar title='Sample-MobX' rightText='调试工具' clickRText={() => {
                 DebugManager.showFloat(Manager)
             }} hideBack/>
-            <RNItem text='Http请求' onPress={() => navigation.push('Http')}/>
-            <RNItem text='数据存储' onPress={() => navigation.push('Storage')}/>
-            <RNItem text='基础控件' onPress={() => navigation.push('Widget')}/>
-            <RNItem text='刷新列表' onPress={() => navigation.push('RefreshList')}/>
-            <RNItem text='WebView' onPress={() => navigation.push('WebView')}/>
-        </SafeAreaView>;
+            <RNItem text='Http请求' onPress={() => Actions.http()}/>
+            <RNItem text='数据存储' onPress={() => Actions.storage()}/>
+            <RNItem text='基础控件' onPress={() => Actions.widget()}/>
+            <RNItem text='刷新列表' onPress={() => Actions.refreshList()}/>
+            <RNItem text='WebView' onPress={() => Actions.webView()}/>
+        </ParentView>;
     }
 
     componentDidMount(): void {
@@ -62,7 +62,7 @@ export default class MainController extends PureComponent {
 
     backListener = () => {
         return BackHandler.addEventListener('hardwareBackPress', () => {
-            if (!navigation.canGoBack()) {
+            if (Actions.currentScene === 'main') {
                 let nowTime = (new Date()).valueOf();
                 if (nowTime - lastClickTime < 1000) {//间隔时间小于1秒才能退出
                     BackHandler.exitApp();

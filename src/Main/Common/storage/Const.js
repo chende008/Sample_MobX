@@ -34,7 +34,7 @@ export const Colors = { //App通用颜色
 export const CommonStyles = {
     container: {//默认页面背景样式
         flex: 1,
-        backgroundColor: Colors.page_bg,
+        backgroundColor: Colors.page_bg
     },
     topLine: {//底部分割线
         borderTopWidth: Const.onePixel,

@@ -1,21 +1,29 @@
-import {observable, set} from 'mobx';
+import {action, observable} from "mobx";
 
-const StoreWebView = observable({
-    title: '',
-    loading: true,
-    canGoBack: false,
-    url: 'https://www.baidu.com'
-});
+export default class StoreWebView {
 
-StoreWebView.reloadPage = ({pageName, url}) => {
-    if ('WebViewController'.equals(pageName) && url) {
-        StoreWebView.url = url
+    constructor(rootStore) {
+        this.rootStore = rootStore;
     }
-};
 
-StoreWebView.refreshData = (data) => {
-    set(StoreWebView, data);
-};
+    @observable title = '';
 
+    @observable loading = true;
 
-export default StoreWebView;
+    @observable canGoBack = false;
+
+    @observable url = 'https://www.baidu.com';
+
+    @action.bound
+    reloadPage(data) {
+        this.url = data.url
+    }
+
+    @action.bound
+    refreshData(data) {
+        const {title, loading, canGoBack, url} = data;
+        this.loading = loading;
+        this.canGoBack = canGoBack;
+        this.title = title;
+    }
+}

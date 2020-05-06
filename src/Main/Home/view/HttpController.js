@@ -1,10 +1,9 @@
 import React, {PureComponent} from 'react';
-import {SafeAreaView, ScrollView} from 'react-native';
-import {NavigationBar} from '../../Common/widgets/WidgetNavigation';
+import {ScrollView} from 'react-native';
+import {NavigationBar, ParentView} from '../../Common/widgets/WidgetNavigation';
 import {RFText} from 'react-native-fast-app';
 import {RNItem} from '../../Common/widgets/WidgetDefault';
-import {Colors, CommonStyles} from '../../Common/storage/Const';
-import StoreHttp from "../../Store/StoreHttp";
+import {Colors} from '../../Common/storage/Const';
 import {observer} from 'mobx-react';
 
 /**
@@ -15,8 +14,8 @@ import {observer} from 'mobx-react';
 export default class HttpController extends PureComponent {
 
     render() {
-        const {moviesList, animalImageList, queryMemberList, getCityAmount, content} = StoreHttp;
-        return <SafeAreaView style={CommonStyles.container}>
+        const {moviesList, animalImageList, queryMemberList, getCityAmount, content} = this.props.storeHttp;
+        return <ParentView>
             <NavigationBar title='请求示例'/>
             <RNItem text='简单数据：标准的json' onPress={moviesList}/>
             <RNItem text='获取图片列表：标准的json' onPress={animalImageList}/>
@@ -25,7 +24,7 @@ export default class HttpController extends PureComponent {
             <ScrollView>
                 <RFText style={{fontSize: 12, color: Colors.text_lighter, padding: 10}} text={content}/>
             </ScrollView>
-        </SafeAreaView>;
+        </ParentView>;
     }
 }
 

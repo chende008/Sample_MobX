@@ -1,11 +1,10 @@
 import React, {PureComponent} from 'react';
 
-import {StyleSheet, View, SafeAreaView} from 'react-native';
+import {StyleSheet} from 'react-native';
 
-import {Colors, CommonStyles, Const} from '../../Common/storage/Const';
+import {Colors, Const} from '../../Common/storage/Const';
 import {RFImage, RFlatList, RFText, RFView} from 'react-native-fast-app';
-import {NavigationBar} from '../../Common/widgets/WidgetNavigation';
-import StoreRefresh from "../../Store/StoreRefresh";
+import {NavigationBar, ParentView} from '../../Common/widgets/WidgetNavigation';
 import {observer} from 'mobx-react';
 
 const headerText = '分页列表支持：无网络，加载中，无数据，加载错误，加载更多等一系列状态展示';
@@ -14,21 +13,22 @@ const headerText = '分页列表支持：无网络，加载中，无数据，加
 export default class RefreshController extends PureComponent {
 
     render() {
-        const {queryDataList} = StoreRefresh;
-        return <SafeAreaView style={CommonStyles.container}>
+        const {dataList, queryDataList} = this.props.storeRefresh;
+        return <ParentView>
             <NavigationBar title='RefreshList组件'/>
-            <RFlatList data={StoreRefresh.dataList}
+            <RFlatList data={dataList}
                        onRefresh={() => queryDataList(true, this.refreshList)}
                        onLoadMore={() => queryDataList(false, this.refreshList)}
                        refreshStatus={{RefreshingData: {text: '刷新中，请稍候...'},}}
                        ListHeaderComponent={() => <RFText style={styles.header} text={headerText}/>}
                        ref={refreshList => this.refreshList = refreshList}
                        renderItem={({item, index}) => this.renderItem(item, index)}/>
-        </SafeAreaView>;
+        </ParentView>;
     }
 
     componentDidMount() {
-        StoreRefresh.queryDataList(true, this.refreshList);
+        const {queryDataList} = this.props.storeRefresh;
+        queryDataList(true, this.refreshList);
     }
 
     renderItem = (item, index) => {

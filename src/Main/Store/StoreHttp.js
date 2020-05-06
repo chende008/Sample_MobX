@@ -1,69 +1,74 @@
-import {observable} from 'mobx';
+import {action, observable} from 'mobx';
 import {RFHttp} from 'react-native-fast-app';
 import {Api} from "../Home/http/Api";
 import {showLoading, showToast} from "../Common/widgets/Loading";
 
-const StoreHttp = observable({
-    content: undefined,
-});
 
-StoreHttp.moviesList = () => {//返回标准的json的http请求
-    RFHttp().url(Api.moviesList).formJson().loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).get((success, json, msg, code) => {
-        if (success) {
-            showToast('请求成功');
-            StoreHttp.content = JSON.stringify(json)
-        } else {
-            showToast(msg);
-        }
-    });
-};
+export default class StoreHttp {
 
-StoreHttp.animalImageList = () => {//返回标准的json的http请求
-    RFHttp().url(Api.animalImageList).get((success, json, msg, code) => {
-        if (success) {
-            showToast('请求成功');
-            StoreHttp.content = JSON.stringify(json)
-        } else {
-            showToast(msg);
-        }
-    });
-};
+    constructor(rootStore) {
+        this.rootStore = rootStore;
+    }
 
-StoreHttp.queryMemberList = async () => {//同步请求数据
-    let {success, json, message, status} = await RFHttp().url(Api.queryMembers).loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).execute('GET');
+    @observable content;
 
-    success ? StoreHttp.content = JSON.stringify(json) : showToast(message);
-
-    /***
-     * 或者得使用标准的promise方式解析数据（异步promise）
-     *
-     * RFHttp().url(Api.queryMembers).execute('GET').then(({success, json, message, status}) => {
+    @action.bound
+    moviesList() {// 返回标准的json的http请求
+        RFHttp().url(Api.moviesList).formJson().loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).get((success, json, msg, code) => {
             if (success) {
                 showToast('请求成功');
-                StoreHttp.content = JSON.stringify(json)
+                this.content = JSON.stringify(json)
+            } else {
+                showToast(msg);
+            }
+        });
+    }
+
+    @action.bound
+    animalImageList() { // 返回标准的json的http请求
+        RFHttp().url(Api.animalImageList).get((success, json, msg, code) => {
+            if (success) {
+                showToast('请求成功');
+                this.content = JSON.stringify(json)
+            } else {
+                showToast(msg);
+            }
+        });
+    }
+
+    @action.bound
+    async queryMemberList() {// 同步请求数据
+        let {success, json, message, status} = await RFHttp().url(Api.queryMembers).loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).execute('GET');
+
+        success ? this.content = JSON.stringify(json) : showToast(message);
+
+        /* 或者得使用标准的promise方式解析数据（异步promise）
+        RFHttp().url(Api.queryMembers).execute('GET').then(({success, json, message, status}) => {
+            if (success) {
+                showToast('请求成功');
+                this.content = JSON.stringify(json)
             } else {
                 showToast(message);
             }
         }).catch(({message}) => {
             showToast(message);
         })
-     */
+        */
+    }
 
-};
+    @action.bound
+    getCityAmount() { //查询各城市Mobile服务数量
+        RFHttp().url(Api.queryCitiesAmount)
+            .contentType('text/xml; charset=utf-8')
+            .loadingFunc((loading) => showLoading('请求中，请稍候...', loading))
+            .pureText().get((success, data, msg, code) => {
+            if (success) {
+                showToast('请求成功');
+                this.content = data;
+            } else {
+                showToast(msg);
+            }
+        });
+    }
+}
 
-StoreHttp.getCityAmount = () => {//查询各城市Mobile服务数量
-    RFHttp().url(Api.queryCitiesAmount)
-        .contentType('text/xml; charset=utf-8')
-        .loadingFunc((loading) => showLoading('请求中，请稍候...', loading))
-        .pureText().get((success, data, msg, code) => {
-        if (success) {
-            showToast('请求成功');
-            StoreHttp.content = data;
-        } else {
-            showToast(msg);
-        }
-    });
-};
-
-
-export default StoreHttp;

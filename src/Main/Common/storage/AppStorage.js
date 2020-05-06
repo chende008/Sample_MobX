@@ -25,3 +25,8 @@ export const RNData = {//临时内存数据
         default_ua: DeviceInfo.getUserAgentSync,
     },
 };
+
+// 声明全局变量，方便查询变量含义
+const global = {
+    INSETS: undefined, // safeView insets 安全区域range
+};

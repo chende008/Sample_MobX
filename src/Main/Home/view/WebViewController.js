@@ -1,23 +1,21 @@
 import React, {PureComponent} from 'react';
 
-import {StyleSheet, SafeAreaView, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import WebUtils from "../../Common/utils/WebUtils";
-import {Notify} from "../../Common/events/Notify";
-import {NavigationBar} from "../../Common/widgets/WidgetNavigation";
+import {NavigationBar, ParentView} from "../../Common/widgets/WidgetNavigation";
 import ProgressBar from "../../Common/widgets/ProgressBar";
 import WebView from "react-native-webview";
-import {CommonStyles} from "../../Common/storage/Const";
 import {DebugManager} from "react-native-debug-tool";
-import StoreWebView from "../../Store/StoreWebView";
 import {observer} from "mobx-react";
+import {Actions} from 'react-native-router-flux'
 
 @observer
 export default class WebViewController extends PureComponent {
 
     render() {
-        let {title, loading, url, canGoBack} = StoreWebView;
-        return <SafeAreaView style={CommonStyles.container}>
-            <NavigationBar title={title} onBack={() => canGoBack ? this.webView.goBack() : this.props.navigation.goBack()}/>
+        let {title, loading, url, canGoBack, refreshData} = this.props.storeWebView;
+        return <ParentView>
+            <NavigationBar title={title} onBack={canGoBack ? this.webView.goBack : Actions.pop}/>
             <View style={{flex: 1}}>
                 <WebView source={{uri: url}}
                          domStorageEnabled={true}
@@ -27,14 +25,14 @@ export default class WebViewController extends PureComponent {
                          onMessage={({nativeEvent}) => {
                              let postMsgData = JSON.parse(nativeEvent.data);
                              if (postMsgData.hasOwnProperty('TitleEvent')) {
-                                 StoreWebView.refreshData({...nativeEvent, ...postMsgData});
+                                 refreshData({...nativeEvent, ...postMsgData});
                              } else {
                                  WebUtils.msgFromH5(postMsgData, this.webView)
                              }
                          }}
                          onNavigationStateChange={params => {
                              let {url, ...other} = params;
-                             StoreWebView.refreshData({...other});
+                             refreshData({...other});
                              DebugManager.appendWebViewLogs(url);
                          }}
                          onLoadProgress={({nativeEvent}) => {
@@ -47,17 +45,17 @@ export default class WebViewController extends PureComponent {
                 />
                 <ProgressBar loading={loading} style={{position: 'absolute', top: 0}} ref={progressBar => (this.progressBar = progressBar)}/>
             </View>
-        </SafeAreaView>
+        </ParentView>
     }
 
-    componentDidMount() {
-        this.progressBar && this.progressBar.showAnimal();
-        Notify.H5_RELOAD_URL.register(StoreWebView.reloadPage)
-    }
-
-    componentWillUnmount() {
-        Notify.H5_RELOAD_URL.unRegister(StoreWebView.reloadPage)
-    }
+    // componentDidMount() {
+    //     this.progressBar && this.progressBar.showAnimal();
+    //     Notify.H5_RELOAD_URL.register(this.props.storeWebView.reloadPage)
+    // }
+    //
+    // componentWillUnmount() {
+    //     Notify.H5_RELOAD_URL.unRegister(this.props.storeWebView.reloadPage)
+    // }
 }
 
 const styles = StyleSheet.create({

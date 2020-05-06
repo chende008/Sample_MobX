@@ -1,37 +1,38 @@
 import React, {PureComponent} from 'react';
 
-import {Clipboard, ScrollView, StyleSheet, View, SafeAreaView} from 'react-native';
-import {Colors, CommonStyles} from '../../Common/storage/Const';
+import {Clipboard, ScrollView, StyleSheet} from 'react-native';
+import {Colors} from '../../Common/storage/Const';
 import {toStr} from '../../Common/utils/Utils';
 import {dateFormat} from '../../Common/utils/DateUtils';
 import {RNStorage} from '../../Common/storage/AppStorage';
 import {RFText, RFView} from 'react-native-fast-app';
-import {NavigationBar} from '../../Common/widgets/WidgetNavigation';
+import {NavigationBar, ParentView} from '../../Common/widgets/WidgetNavigation';
 import {RNItem, RNLine} from '../../Common/widgets/WidgetDefault';
 import DeviceInfo from 'react-native-device-info';
 import {showToast} from '../../Common/widgets/Loading';
 import {observer} from "mobx-react";
-import StoreData from "../../Store/StoreData";
+
+const json = {age: 25, name: 'Tom', gender: 'male', time: dateFormat(new Date(), 'yyyy-MM-dd hh:mm')};
 
 @observer
 export default class StorageController extends PureComponent {
 
     render() {
-        let {text, json, dataChangedCount} = StoreData;
-        return <SafeAreaView style={CommonStyles.container}>
+        let {text, dataChangedCount, refreshText, refreshDataCount} = this.props.storeData;
+        return <ParentView>
             <NavigationBar title='数据存储'/>
             <RFView>
                 <RFView style={{flexDirection: 'row'}}>
                     <RNItem text='设置字符串' style={{flex: 1}} onPress={() => RNStorage.str = 'this is a string '}/>
-                    <RNItem text='获取字符串' style={{flex: 1}} onPress={() => StoreData.text = RNStorage.str + dateFormat(new Date(), 'yyyy-MM-dd hh:mm')}/>
+                    <RNItem text='获取字符串' style={{flex: 1}} onPress={() => refreshText(RNStorage.str + dateFormat(new Date(), 'yyyy-MM-dd hh:mm'))}/>
                 </RFView>
                 <RFView style={{flexDirection: 'row'}}>
                     <RNItem text='设置Json' style={{flex: 1}} onPress={() => RNStorage.json = json}/>
-                    <RNItem text='获取Json' style={{flex: 1}} onPress={() => StoreData.text = JSON.stringify(RNStorage.json)}/>
+                    <RNItem text='获取Json' style={{flex: 1}} onPress={() => refreshText(JSON.stringify(RNStorage.json))}/>
                 </RFView>
                 <RNItem text='随机字符串' onPress={() => {
                     RNStorage[DeviceInfo.getBundleId()] = '随机数据value：' + new Date().valueOf();
-                    StoreData.dataChangedCount = dataChangedCount + 1
+                    refreshDataCount(dataChangedCount + 1);
                 }}/>
             </RFView>
             <ScrollView>{
@@ -45,7 +46,7 @@ export default class StorageController extends PureComponent {
             </ScrollView>
             <RNLine/>
             <RFText style={styles.text} text={'文本内容：' + text}/>
-        </SafeAreaView>;
+        </ParentView>;
     }
 }
 

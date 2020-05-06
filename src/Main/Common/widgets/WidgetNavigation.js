@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {Actions} from 'react-native-router-flux'
 
 import PropTypes from 'prop-types';
 import {isEmpty} from '../utils/Utils';
@@ -26,7 +27,19 @@ NavigationBar.propTypes = {// 标题栏属性
     clickRText: PropTypes.func,
 };
 
-NavigationBar.defaultProps = {onBack: () => navigation.goBack()};// 标题栏属性默认值
+NavigationBar.defaultProps = {onBack: () => Actions.pop()};// 标题栏属性默认值
+
+export function ParentView({...props}) {
+    const statusBarBg = props.bgColor || Colors.white;
+    return <View style={[CommonStyles.container, {backgroundColor: statusBarBg, paddingTop: INSETS.top}]}>
+        <View style={CommonStyles.container}>{props.children}</View>
+    </View>
+}
+
+ParentView.propTypes = {
+    bgColor: PropTypes.string
+};
+
 
 const styles = StyleSheet.create({
     titleBarParent: {
