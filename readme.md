@@ -6,7 +6,7 @@
 
  react-native-fast-app 基础服务
 
- mobX 、mobx-react  数据管理
+ mobx 、mobx-react  数据管理
 
 ### UI截图
 
