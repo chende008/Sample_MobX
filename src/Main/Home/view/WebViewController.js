@@ -14,7 +14,7 @@ export default class WebViewController extends PureComponent {
 
     render() {
         let {title, loading, url, canGoBack, refreshData} = this.props.storeWebView;
-        return <ParentView>
+        return <ParentView bottomINSET>
             <NavigationBar title={title} onBack={canGoBack ? this.webView.goBack : Actions.pop}/>
             <View style={{flex: 1}}>
                 <WebView source={{uri: url}}

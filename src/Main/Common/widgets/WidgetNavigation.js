@@ -31,13 +31,14 @@ NavigationBar.defaultProps = {onBack: () => Actions.pop()};// 标题栏属性默
 
 export function ParentView({...props}) {
     const statusBarBg = props.bgColor || Colors.white;
-    return <View style={[CommonStyles.container, {backgroundColor: statusBarBg, paddingTop: INSETS.top}]}>
+    return <View style={[CommonStyles.container, {backgroundColor: statusBarBg, paddingTop: INSETS.top, paddingBottom: props.bottomINSET ? INSETS.bottom : 0}]}>
         <View style={CommonStyles.container}>{props.children}</View>
     </View>
 }
 
 ParentView.propTypes = {
-    bgColor: PropTypes.string
+    bgColor: PropTypes.string,
+    bottomINSET: PropTypes.bool
 };
 
 

@@ -19,7 +19,7 @@ export default class StorageController extends PureComponent {
 
     render() {
         let {text, dataChangedCount, refreshText, refreshDataCount} = this.props.storeData;
-        return <ParentView>
+        return <ParentView bottomINSET>
             <NavigationBar title='数据存储'/>
             <RFView>
                 <RFView style={{flexDirection: 'row'}}>
