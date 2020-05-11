@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
-import {RFText} from 'react-native-fast-app';
+import {XText} from 'react-native-easy-app';
 import {Colors} from "../../Common/storage/Const";
 import {observer} from "mobx-react";
 import {ParentView} from "../../Common/widgets/WidgetNavigation";
@@ -11,18 +11,18 @@ export default class HomeController extends PureComponent {
     render() {
         let {tips, dataList, addRandom, delRandom} = this.props.storeHome;
         return <ParentView>
-            <RFText text={tips} style={{fontSize: 13, fontWeight: 'bold', color: Colors.yellow, paddingLeft: 15, paddingTop: 15}}/>
-            <RFText text='添加随机数' style={styles.btn} onPress={() => addRandom()}/>
+            <XText text={tips} style={{fontSize: 13, fontWeight: 'bold', color: Colors.yellow, paddingLeft: 15, paddingTop: 15}}/>
+            <XText text='添加随机数' style={styles.btn} onPress={() => addRandom()}/>
             <ScrollView>{
                 dataList && dataList.map((item, index) => {
-                    return <RFText key={index}
-                                   text={'随机数：' + item}
-                                   iconPosition='right'
-                                   iconSize={16}
-                                   textExtend={true}
-                                   icon='close'
-                                   style={styles.itemText}
-                                   onPress={() => delRandom(index)}/>;
+                    return <XText key={index}
+                                  text={'随机数：' + item}
+                                  iconPosition='right'
+                                  iconSize={16}
+                                  textExtend={true}
+                                  icon='close'
+                                  style={styles.itemText}
+                                  onPress={() => delRandom(index)}/>;
                 })}
             </ScrollView>
         </ParentView>;

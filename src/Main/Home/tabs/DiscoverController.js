@@ -3,7 +3,7 @@ import React, {PureComponent} from 'react';
 import {StyleSheet} from 'react-native';
 
 import {Colors, Const} from '../../Common/storage/Const';
-import {RFImage, RFlatList, RFText, RFView} from 'react-native-fast-app';
+import {XImage, XFlatList, XText, XView} from 'react-native-easy-app';
 import {ParentView} from '../../Common/widgets/WidgetNavigation';
 import {observer} from 'mobx-react';
 
@@ -15,13 +15,13 @@ export default class DiscoverController extends PureComponent {
     render() {
         const {dataList = [], queryDataList} = this.props.storeDiscover;
         return <ParentView>
-            <RFlatList data={dataList}
-                       onRefresh={() => queryDataList(true, this.refreshList)}
-                       onLoadMore={() => queryDataList(false, this.refreshList)}
-                       refreshStatus={{RefreshingData: {text: '刷新中，请稍候...'},}}
-                       ListHeaderComponent={() => <RFText style={styles.header} text={headerText}/>}
-                       ref={refreshList => this.refreshList = refreshList}
-                       renderItem={({item, index}) => this.renderItem(item, index)}/>
+            <XFlatList data={dataList}
+                      onRefresh={() => queryDataList(true, this.refreshList)}
+                      onLoadMore={() => queryDataList(false, this.refreshList)}
+                      refreshStatus={{RefreshingData: {text: '刷新中，请稍候...'},}}
+                      ListHeaderComponent={() => <XText style={styles.header} text={headerText}/>}
+                      ref={refreshList => this.refreshList = refreshList}
+                      renderItem={({item, index}) => this.renderItem(item, index)}/>
         </ParentView>;
     }
 
@@ -32,14 +32,14 @@ export default class DiscoverController extends PureComponent {
 
     renderItem = (item, index) => {
         let {title, image_url, type, score, synopsis, members} = item;
-        return <RFView key={index} style={styles.itemParent}>
-            <RFImage style={{width: 120, height: 120, margin: 5}} resizeMode='contain' icon={image_url}/>
-            <RFView style={{flex: 1}}>
-                <RFText style={{fontSize: 14, fontWeight: 'bold', color: Colors.text, paddingRight: 5}} text={'名称：' + title}/>
-                <RFText style={styles.itemDesc} numberOfLines={4} text={synopsis}/>
-                <RFText style={{fontSize: 12, color: Colors.text}} text={'评分：' + score + '    参与人数：' + members}/>
-            </RFView>
-        </RFView>;
+        return <XView key={index} style={styles.itemParent}>
+            <XImage style={{width: 120, height: 120, margin: 5}} resizeMode='contain' icon={image_url}/>
+            <XView style={{flex: 1}}>
+                <XText style={{fontSize: 14, fontWeight: 'bold', color: Colors.text, paddingRight: 5}} text={'名称：' + title}/>
+                <XText style={styles.itemDesc} numberOfLines={4} text={synopsis}/>
+                <XText style={{fontSize: 12, color: Colors.text}} text={'评分：' + score + '    参与人数：' + members}/>
+            </XView>
+        </XView>;
     };
 
 

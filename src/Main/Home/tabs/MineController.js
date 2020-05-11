@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 
-import {RFText, RFView} from 'react-native-fast-app';
+import {XText, XView} from 'react-native-easy-app';
 import {Colors} from "../../Common/storage/Const";
 import {ParentView} from "../../Common/widgets/WidgetNavigation";
 import {RNItem} from "../../Common/widgets/WidgetDefault";
@@ -22,13 +22,13 @@ export default class MineController extends PureComponent {
             <RNItem text='获取图片列表：标准的json' onPress={() => animalImageList()}/>
             <RNItem text='同步请求成员列表：标准的json' onPress={() => queryMemberList()}/>
             <RNItem text='省份、城市记录数量：返回 XML' onPress={() => getCityList()}/>
-            <RFView style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                <RFText text='跳转到首页' style={styles.btn} onPress={() => Actions.jump('home')}/>
-                <RFText text='数据存储管理' style={styles.btn} onPress={() => Actions.storage()}/>
-                <RFText text='打开H5页面' style={styles.btn} onPress={() => Actions.webView()}/>
-            </RFView>
+            <XView style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                <XText text='跳转到首页' style={styles.btn} onPress={() => Actions.jump('home')}/>
+                <XText text='数据存储管理' style={styles.btn} onPress={() => Actions.storage()}/>
+                <XText text='打开H5页面' style={styles.btn} onPress={() => Actions.webView()}/>
+            </XView>
             <ScrollView>
-                <RFText style={{fontSize: 12, color: Colors.text_lighter, padding: 10}} text={content}/>
+                <XText style={{fontSize: 12, color: Colors.text_lighter, padding: 10}} text={content}/>
             </ScrollView>
         </ParentView>;
     }

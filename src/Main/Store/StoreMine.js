@@ -1,5 +1,5 @@
 import {action, observable} from 'mobx';
-import {RFHttp} from 'react-native-fast-app';
+import {XHttp} from 'react-native-easy-app';
 import {Api} from "../Home/http/Api";
 import {showLoading, showToast} from "../Common/widgets/Loading";
 
@@ -13,7 +13,7 @@ export default class StoreMine {
 
     @action.bound
     moviesList() {// 返回标准的json的http请求
-        RFHttp().url(Api.btcPrice).loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).get((success, json, msg, code) => {
+        XHttp().url(Api.btcPrice).loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).get((success, json, msg, code) => {
             if (success) {
                 showToast('请求成功');
                 this.content = JSON.stringify(json)
@@ -25,7 +25,7 @@ export default class StoreMine {
 
     @action.bound
     animalImageList() { // 返回标准的json的http请求
-        RFHttp().url(Api.animalImageList).loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).get((success, json, msg, code) => {
+        XHttp().url(Api.animalImageList).loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).get((success, json, msg, code) => {
             if (success) {
                 showToast('请求成功');
                 this.content = JSON.stringify(json)
@@ -37,7 +37,7 @@ export default class StoreMine {
 
     @action.bound
     async queryMemberList() {// 同步请求数据
-        let {success, json, message, status} = await RFHttp().url(Api.queryMembers).execute('GET');
+        let {success, json, message, status} = await XHttp().url(Api.queryMembers).execute('GET');
 
         success ? this.content = JSON.stringify(json) : showToast(message);
 
@@ -57,7 +57,7 @@ export default class StoreMine {
 
     @action.bound
     getCityList() { //查询各城市Mobile服务数量
-        RFHttp().url(Api.queryCitiesAmount)
+        XHttp().url(Api.queryCitiesAmount)
             .contentType('text/xml; charset=utf-8')
             .loadingFunc((loading) => showLoading('请求中，请稍候...', loading))
             .pureText().get((success, data, msg, code) => {

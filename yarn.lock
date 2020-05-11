@@ -5119,20 +5119,20 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-native-debug-tool@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-debug-tool/-/react-native-debug-tool-1.1.0.tgz#ce29e0357801a663feab14ddc045eaa7954a7a9e"
-  integrity sha512-+mron68NKaItvnw2AiH7JiV8Z0286+Bu62xDaRK7viYz+KA8yjZXHyew7SbGkt1l7lK4NQHv5UlMrtUM1mtRAg==
+react-native-debug-tool@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-debug-tool/-/react-native-debug-tool-1.1.1.tgz#1d8c0f47601e5d7a15b2d64c4973ecf2f4735c57"
+  integrity sha512-VG9MESVlVuXW54PlmDN+x9rdSoK9qsnrU5VxXtW+s9NAiAE9p7LIlfwmdngXsN63z74f4nTFGHcwu+1SqQ7MEw==
 
 react-native-device-info@^5.5.6:
   version "5.5.6"
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-5.5.6.tgz#139466e6e995e512bb03d5bdeef59bd4cfe21dcf"
   integrity sha512-3slUaygctIs1UqsTeZIMpskOWm1FC9SouBxyX7rp6PbOmokZiSCO/c5noUx+ihGNRfUDTbyjZDrJBYEfRNXoZg==
 
-react-native-fast-app@^1.5.5:
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/react-native-fast-app/-/react-native-fast-app-1.5.5.tgz#88786467caeeb9857cfef0b323ed4835179aca01"
-  integrity sha512-+A8cdEK4hTcQqP5d8CvQ75qjfHJ2ZKf5WahE+On5UEEkz9hp4k3JEoemLbb2cDWWjCmxJqLatBcouqHyfrPduw==
+react-native-easy-app@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-easy-app/-/react-native-easy-app-1.6.0.tgz#1157bcc269812f61e0f3e4e10ba86cc325f7c3d8"
+  integrity sha512-G0VrwZBrDbNvFxqSU66OI0OhxD4uuKGi8FAc9DRQ5/6Mk5EMD+KDskj0dyv1z551uSAdspsbTI9cTF0aPNXyHA==
 
 react-native-gesture-handler@^1.6.1:
   version "1.6.1"
@@ -5192,13 +5192,6 @@ react-native-safe-area-view@^0.14.9:
   version "0.14.9"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.14.9.tgz#90ee8383037010d9a5055a97cf97e4c1da1f0c3d"
   integrity sha512-WII/ulhpVyL/qbYb7vydq7dJAfZRBcEhg4/UWt6F6nAKpLa3gAceMOxBxI914ppwSP/TdUsandFy6lkJQE0z4A==
-  dependencies:
-    hoist-non-react-statics "^2.3.1"
-
-react-native-safe-area-view@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-1.1.1.tgz#9833e34c384d0513f4831afcd1e54946f13897b2"
-  integrity sha512-bbLCtF+tqECyPWlgkWbIwx4vDPb0GEufx/ZGcSS4UljMcrpwluachDXoW9DBxhbMCc6k1V0ccqHWN7ntbRdERQ==
   dependencies:
     hoist-non-react-statics "^2.3.1"
 

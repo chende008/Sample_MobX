@@ -4,7 +4,7 @@
 
  react-native-router-flux  页面导航
 
- react-native-fast-app 基础服务
+ react-native-easy-app 基础服务
 
  mobx 、mobx-react  数据管理
 
