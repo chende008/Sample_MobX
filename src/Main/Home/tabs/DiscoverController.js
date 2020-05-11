@@ -4,18 +4,17 @@ import {StyleSheet} from 'react-native';
 
 import {Colors, Const} from '../../Common/storage/Const';
 import {RFImage, RFlatList, RFText, RFView} from 'react-native-fast-app';
-import {NavigationBar, ParentView} from '../../Common/widgets/WidgetNavigation';
+import {ParentView} from '../../Common/widgets/WidgetNavigation';
 import {observer} from 'mobx-react';
 
 const headerText = '分页列表支持：无网络，加载中，无数据，加载错误，加载更多等一系列状态展示';
 
 @observer
-export default class RefreshController extends PureComponent {
+export default class DiscoverController extends PureComponent {
 
     render() {
-        const {dataList, queryDataList} = this.props.storeRefresh;
+        const {dataList = [], queryDataList} = this.props.storeDiscover;
         return <ParentView>
-            <NavigationBar title='RefreshList组件'/>
             <RFlatList data={dataList}
                        onRefresh={() => queryDataList(true, this.refreshList)}
                        onLoadMore={() => queryDataList(false, this.refreshList)}
@@ -27,7 +26,7 @@ export default class RefreshController extends PureComponent {
     }
 
     componentDidMount() {
-        const {queryDataList} = this.props.storeRefresh;
+        const {queryDataList} = this.props.storeDiscover;
         queryDataList(true, this.refreshList);
     }
 

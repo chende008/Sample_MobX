@@ -1,7 +1,8 @@
 import StoreData from "./StoreData";
-import StoreHttp from "./StoreHttp";
-import StoreRefresh from "./StoreRefresh";
+import StoreMine from "./StoreMine";
+import StoreDiscover from "./StoreDiscover";
 import StoreWebView from "./StoreWebView";
+import StoreHome from "./StoreHome";
 
 export default class RootStore {
 
@@ -10,9 +11,10 @@ export default class RootStore {
     }
 
     initStore() {
+        this.storeHome = new StoreHome(this);
+        this.storeDiscover = new StoreDiscover(this);
+        this.storeMine = new StoreMine(this);
         this.storeData = new StoreData(this);
-        this.storeHttp = new StoreHttp(this);
-        this.storeRefresh = new StoreRefresh(this);
         this.storeWebView = new StoreWebView(this);
     }
 

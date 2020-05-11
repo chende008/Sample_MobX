@@ -3,8 +3,7 @@ import {RFHttp} from 'react-native-fast-app';
 import {Api} from "../Home/http/Api";
 import {showLoading, showToast} from "../Common/widgets/Loading";
 
-
-export default class StoreHttp {
+export default class StoreMine {
 
     constructor(rootStore) {
         this.rootStore = rootStore;
@@ -14,7 +13,7 @@ export default class StoreHttp {
 
     @action.bound
     moviesList() {// 返回标准的json的http请求
-        RFHttp().url(Api.moviesList).formJson().loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).get((success, json, msg, code) => {
+        RFHttp().url(Api.btcPrice).loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).get((success, json, msg, code) => {
             if (success) {
                 showToast('请求成功');
                 this.content = JSON.stringify(json)
@@ -26,7 +25,7 @@ export default class StoreHttp {
 
     @action.bound
     animalImageList() { // 返回标准的json的http请求
-        RFHttp().url(Api.animalImageList).get((success, json, msg, code) => {
+        RFHttp().url(Api.animalImageList).loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).get((success, json, msg, code) => {
             if (success) {
                 showToast('请求成功');
                 this.content = JSON.stringify(json)
@@ -38,7 +37,7 @@ export default class StoreHttp {
 
     @action.bound
     async queryMemberList() {// 同步请求数据
-        let {success, json, message, status} = await RFHttp().url(Api.queryMembers).loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).execute('GET');
+        let {success, json, message, status} = await RFHttp().url(Api.queryMembers).execute('GET');
 
         success ? this.content = JSON.stringify(json) : showToast(message);
 
@@ -57,7 +56,7 @@ export default class StoreHttp {
     }
 
     @action.bound
-    getCityAmount() { //查询各城市Mobile服务数量
+    getCityList() { //查询各城市Mobile服务数量
         RFHttp().url(Api.queryCitiesAmount)
             .contentType('text/xml; charset=utf-8')
             .loadingFunc((loading) => showLoading('请求中，请稍候...', loading))

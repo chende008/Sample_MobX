@@ -4,7 +4,7 @@ import {Api} from "../Home/http/Api";
 import {showToast} from "../Common/widgets/Loading";
 import {netWorkException} from "../Common/utils/Utils";
 
-export default class StoreRefresh {
+export default class StoreDiscover {
 
     constructor(rootStore) {
         this.rootStore = rootStore;

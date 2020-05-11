@@ -5,6 +5,7 @@ import {RFStorage, RFWidget} from 'react-native-fast-app';
 import {RNStorage} from '../Common/storage/AppStorage';
 import {Actions} from 'react-native-router-flux'
 import RFLog from "../Common/utils/RFLog";
+import HttpConfig from "../Home/http/HttpConfig";
 
 export default class LaunchController extends PureComponent {
 
@@ -14,6 +15,7 @@ export default class LaunchController extends PureComponent {
     }
 
     init = () => {
+        HttpConfig.initDemo();
         RFStorage.initStorage(RNStorage, () => {
             Actions.reset('main')
         }, (data) => {
