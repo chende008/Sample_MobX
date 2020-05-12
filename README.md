@@ -12,3 +12,4 @@
 
 <img src="https://github.com/chende008/Sample_MobX/blob/master/images/react_native_mobx.jpg">
 
+注：RootStore是所有StoreXXX的父节点，做为subStore数据交换的桥梁，可以实现subStore间的数据共享。

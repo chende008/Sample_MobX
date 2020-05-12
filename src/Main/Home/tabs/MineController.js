@@ -18,10 +18,10 @@ export default class MineController extends PureComponent {
     render() {
         const {moviesList, animalImageList, queryMemberList, getCityList, content} = this.props.storeMine;
         return <ParentView>
-            <RNItem text='简单数据：标准的json' onPress={() => moviesList()}/>
-            <RNItem text='获取图片列表：标准的json' onPress={() => animalImageList()}/>
-            <RNItem text='同步请求成员列表：标准的json' onPress={() => queryMemberList()}/>
-            <RNItem text='省份、城市记录数量：返回 XML' onPress={() => getCityList()}/>
+            <RNItem text='简单数据：标准的json' onPress={moviesList}/>
+            <RNItem text='获取图片列表：标准的json' onPress={animalImageList}/>
+            <RNItem text='同步请求成员列表：标准的json' onPress={queryMemberList}/>
+            <RNItem text='省份、城市记录数量：返回 XML' onPress={getCityList}/>
             <XView style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
                 <XText text='跳转到首页' style={styles.btn} onPress={() => Actions.jump('home')}/>
                 <XText text='数据存储管理' style={styles.btn} onPress={() => Actions.storage()}/>

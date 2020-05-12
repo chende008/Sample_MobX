@@ -12,7 +12,7 @@ export default class HomeController extends PureComponent {
         let {tips, dataList, addRandom, delRandom} = this.props.storeHome;
         return <ParentView>
             <XText text={tips} style={{fontSize: 13, fontWeight: 'bold', color: Colors.yellow, paddingLeft: 15, paddingTop: 15}}/>
-            <XText text='添加随机数' style={styles.btn} onPress={() => addRandom()}/>
+            <XText text='添加随机数' style={styles.btn} onPress={addRandom}/>
             <ScrollView>{
                 dataList && dataList.map((item, index) => {
                     return <XText key={index}
