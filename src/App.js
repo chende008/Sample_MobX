@@ -36,17 +36,17 @@ function RouterList() {//项目页面清单
                        tabs={true}
                        title='首页'
                        component={HomeController}
-                       icon={({focused}) => <XImage style={{width: 24, height: 24}} icon={focused ? 'home_sel' : 'home_dis'}/>}/>
+                       icon={({focused}) => <XImage iconSize={24} icon={focused ? 'home_sel' : 'home_dis'}/>}/>
                 <Scene key='discover'
                        tabs={true}
                        title='发现'
                        component={DiscoverController}
-                       icon={({focused}) => <XImage style={{width: 24, height: 24}} icon={focused ? 'discover_sel' : 'discover_dis'}/>}/>
+                       icon={({focused}) => <XImage iconSize={24} icon={focused ? 'discover_sel' : 'discover_dis'}/>}/>
                 <Scene key='mine'
                        tabs={true}
                        title='我的'
                        component={MineController}
-                       icon={({focused}) => <XImage style={{width: 24, height: 24}} icon={focused ? 'mine_sel' : 'mine_dis'}/>}/>
+                       icon={({focused}) => <XImage iconSize={24} icon={focused ? 'mine_sel' : 'mine_dis'}/>}/>
             </Scene>
             <Scene key='storage' component={StorageController}/>
             <Scene key='webView' component={WebViewController}/>
