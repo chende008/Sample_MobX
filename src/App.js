@@ -18,7 +18,6 @@ const rootStore = new RootStore();
 
 export default function App() {
     console.disableYellowBox = true;
-    XWidget.initResource(Assets);
     return <SafeAreaProvider>
         <RootSiblingParent>
             <RouterList/>
@@ -28,6 +27,7 @@ export default function App() {
 
 function RouterList() {//项目页面清单
     global.INSETS = useSafeArea();
+    XWidget.initResource(Assets).initReferenceScreen(375, 677);
     return <Router {...rootStore}>
         <Scene key="root" hideNavBar>
             <Scene initial={true} component={LaunchController}/>
