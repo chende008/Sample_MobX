@@ -15,12 +15,10 @@ export default class LaunchController extends PureComponent {
     }
 
     init = () => {
-        HttpConfig.initDemo();
-        XStorage.initStorage(RNStorage, () => {
+        HttpConfig.init();
+        XStorage.initStorage(RNStorage, AsyncStorage, () => {
             Actions.reset('main')
-        }, (data) => {
-            this.printLog(data)
-        }, '1.0', AsyncStorage);
+        }, this.printLog);
     };
 
     printLog = (data) => {

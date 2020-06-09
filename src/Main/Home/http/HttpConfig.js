@@ -8,7 +8,7 @@ import {Notify} from "../../Common/events/Notify";
  */
 export default class HttpConfig {
 
-    static initDemo() {
+    static init() {
         XHttpConfig().initHttpLogOn(true)
             .initParseDataFunc((result, request, callback) => {
                 let {success, json, message, status, response} = result;
