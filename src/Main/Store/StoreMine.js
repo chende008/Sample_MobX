@@ -25,7 +25,7 @@ export default class StoreMine {
 
     @action.bound
     animalImageList() { // 返回标准的json的http请求
-        XHttp().url(Api.animalImageList).loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).get((success, json, msg, code) => {
+        XHttp().url(Api.filmsList).loadingFunc((loading) => showLoading('请求中，请稍候...', loading)).get((success, json, msg, code) => {
             if (success) {
                 showToast('请求成功');
                 this.content = JSON.stringify(json)
