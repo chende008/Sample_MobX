@@ -6,6 +6,8 @@ import {RNStorage} from '../Common/storage/AppStorage';
 import {Actions} from 'react-native-router-flux'
 import RFLog from "../Common/utils/RFLog";
 import HttpConfig from "../Home/http/HttpConfig";
+import {DebugManager} from "react-native-debug-tool";
+import {Manager} from 'react-native-root-toast';
 
 export default class LaunchController extends PureComponent {
 
@@ -19,6 +21,7 @@ export default class LaunchController extends PureComponent {
         XStorage.initStorage(RNStorage, AsyncStorage, () => {
             Actions.reset('main')
         }, this.printLog);
+        DebugManager.showFloat(Manager)
     };
 
     printLog = (data) => {
